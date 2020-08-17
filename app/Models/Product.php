@@ -14,6 +14,8 @@ class Product extends Model
     public $table = 'sc_shop_product';
     protected $fillable = ['name', 'image', 'category', 'status', 'price', 'content'];
     public $timestamps = false;
+    const ON = 0;
+    const OFF = 1;
 
     public static $status = [
         '0' => "ON",
@@ -22,7 +24,7 @@ class Product extends Model
 
     public static function getIndex()
     {
-        $data = self::get();
+        $data = self::where('status', Product::ON)->get();
         return $data;
     }
 
@@ -51,6 +53,11 @@ class Product extends Model
         $img->save($fileImg);
         $data['image'] ="../img/product" . DIRECTORY_SEPARATOR . $imgFileName;
 
+        return $data;
+    }
+
+    public static function getDetail($id) {
+        $data = Product::find($id);
         return $data;
     }
 }

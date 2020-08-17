@@ -30,7 +30,7 @@
                                             <table class="table table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th style="width: 100px">#</th>
+                                                    <th style="width: 100px">STT</th>
                                                     <th>Sản Phẩm</th>
                                                     <th style="width: 250px">Hình Ảnh</th>
                                                     <th style="width: 250px">Thể Loại</th>
@@ -42,7 +42,7 @@
                                                 <tbody>
                                                 @foreach ($datas as $data)
                                                     <tr>
-                                                        <td>{{ $loop->index	 }}</td>
+                                                        <td>{{ $loop->index	+ 1 }}</td>
                                                         <td>{{ $data->name	 }}</td>
                                                         <td>
                                                             <img src="{{ $data->image }}" alt="do go">
@@ -59,7 +59,7 @@
                                                             {{ \App\Models\Product::$status[$data->status] }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('admin.product.edit') }}">Edit</a> / <a href="">Delete</a>
+                                                            <a href="{{ route('admin.product.edit', $data->id) }}">Edit</a> / <a href="">Delete</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

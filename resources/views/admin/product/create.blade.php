@@ -23,6 +23,9 @@
                             <div class="card-header">
                                 <h3 class="card-title">Thêm Sản Phẩm</h3>
                             </div>
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                        @endforeach
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form method="POST" action="{{ route('admin.product.create') }}" class="form-horizontal"  enctype="multipart/form-data">
@@ -78,13 +81,13 @@
                                         <div class="col-sm-10 mt-2">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked="">
+                                                    <input type="radio" name="status" id="optionsRadios1" value="0" checked="">
                                                     ON
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="1">
+                                                    <input type="radio" name="status" id="optionsRadios2" value="1">
                                                     OFF
                                                 </label>
                                             </div>
@@ -118,13 +121,4 @@
 
         </section>
     </div>
-@push('scripts')
-    <script  type="text/javascript">
-        $(function () {
-            $("input[data-bootstrap-switch]").each(function(){
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
-            });
-        })
-    </script>
-@endpush
 @endsection

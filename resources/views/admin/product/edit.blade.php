@@ -5,13 +5,10 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>BRAND</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Update Brand</li>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-left">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.product.index') }}">Sản Phẩm</a></li>
+                            <li class="breadcrumb-item active">Thêm</li>
                         </ol>
                     </div>
                 </div>
@@ -21,105 +18,107 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">Update Brand</h3>
+                                <h3 class="card-title">Thêm Sản Phẩm</h3>
                             </div>
-                            <!-- /.card-header -->
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                        @endforeach
+                        <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="form-horizontal">
+                            <form method="POST" action="{{ route('admin.product.create') }}" class="form-horizontal"  enctype="multipart/form-data">
+                                @csrf
                                 <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" value="{{ !empty(old('name')) ? old('name') : $data->name }}" class="form-control @error('name') border border-danger @enderror" placeholder="Tên Sản Phẩm">
+                                            @error('name')
+                                            <div class="text-danger mt-2 mb-0">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Hình Ảnh</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" class="form-control  src="{{ $data->image }}"  @error('image') border border-danger @enderror" name="image" multiple>
+                                            @error('image')
+                                            <div class="text-danger mt-2 mb-0">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+{{--                                    <div class="form-group row">--}}
+{{--                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Thể Loại</label>--}}
+{{--                                        <div class="col-sm-10">--}}
+{{--                                            <select class="form-control" name="category">--}}
+{{--                                                @foreach($data as $item)--}}
+{{--                                                    <optgroup label="{{ $item['alias'] }}">--}}
+{{--                                                        @if(isset($item['children']))--}}
+{{--                                                            @foreach($item['children'] as $v)--}}
+{{--                                                                <option value="{{ $v['id'] }}">{{ $v['alias'] }}</option>--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @endif--}}
+{{--                                                    </optgroup>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
                                     <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Giá</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
-                                        <div class="col-sm-10">
-                                            <input type="file" class="form-control" id="inputPassword3" placeholder="Password">
+                                            <input type="number" name="price" value="{{ $data->price }}" class="form-control  @error('price') border border-danger @enderror" placeholder="Giá Sản Phẩm VNĐ" value="{{ old('price') }}">
+                                            @error('price')
+                                            <div class="text-danger mt-2 mb-0">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Category</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
-                                                <option>option 4</option>
-                                                <option>option 5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Status</label>
-                                        <div class="col-sm-10">
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch>
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Trạng Thái</label>
+                                        <div class="col-sm-10 mt-2">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="status" id="optionsRadios1" value="0" checked="">
+                                                    ON
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="status" id="optionsRadios2" value="1">
+                                                    OFF
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Content</label>
-                                            <div class="col-sm-10">
-                                                <div class="card card-outline card-info">
-                                                    <div class="card-header">
-                                                    <!-- tools box -->
-                                                    <div class="card-tools">
-                                                        <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" data-toggle="tooltip"
-                                                                title="Collapse">
-                                                        <i class="fas fa-minus"></i></button>
-                                                        <button type="button" class="btn btn-tool btn-sm" data-card-widget="remove" data-toggle="tooltip"
-                                                                title="Remove">
-                                                        <i class="fas fa-times"></i></button>
-                                                    </div>
-                                                    <!-- /. tools -->
-                                                    </div>
-                                                    <!-- /.card-header -->
-                                                    <div class="card-body pad">
-                                                    <div class="mb-3">
-                                                        <textarea class="textarea" placeholder="Place some text here"
-                                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                                    </div>
-                                            <p class="text-sm mb-0">
-                                                Editor <a href="https://github.com/summernote/summernote">Documentation and license
-                                                information.</a>
-                                            </p>
-                                        </div>
-                                    </div>
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Nội Dung</label>
+                                        <div class="col-sm-10">
+                                            <div class="mb-3">
+                                                <textarea class="textarea" placeholder="Place some text here" name="content">
+                                                        {{ $data->content }}
+                                                </textarea>
+                                            </div>
+                                            @error('content')
+                                            <div class="text-danger mt-2 mb-0">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer text-center">
-                                    <button type="submit" class="btn btn-info">Save</button>
+                                    <button type="submit" class="btn btn-info">Lưu</button>
                                 </div>
                                 <!-- /.card-footer -->
                             </form>
                         </div>
-                    </div>
-                    <div class="col-md-2">
                     </div>
                 </div>
             </div>
 
         </section>
     </div>
-@push('scripts')
-    <script  type="text/javascript">
-        $(function () {
-            $("input[data-bootstrap-switch]").each(function(){
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
-            });
-        })
-    </script>
-@endpush
 @endsection

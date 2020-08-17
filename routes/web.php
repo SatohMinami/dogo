@@ -13,7 +13,7 @@ Route::group(['prefix' => 'product', 'namespace' => 'Admin', 'middleware' => ['a
     Route::get('index', 'ProductController@getIndex')->name('admin.product.index');
     Route::get('create', 'ProductController@getCreate')->name('admin.product.create');
     Route::post('create', 'ProductController@postCreate')->name('admin.product.create');
-    Route::get('edit', 'ProductController@getEdit')->name('admin.product.edit');
+    Route::get('edit/{id}', 'ProductController@getEdit')->name('admin.product.edit');
 //    Route::post('delete', 'StaffController@postDelete')->name('staff.delete');
 //    Route::post('edit', 'StaffController@postEdit')->name('staff.edit');
 });

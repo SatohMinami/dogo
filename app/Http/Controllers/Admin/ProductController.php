@@ -33,16 +33,17 @@ class ProductController extends Controller
 
     public function postCreate(ProductRequest $request)
     {
-        $param = $request->only('name', 'image', 'category', 'price', 'status', 'content');
+        $param = $request->only('name', 'image', 'category', 'price', 'gender', 'presence', 'status', 'content');
         $param['category'] = (int) $param['category'];
         $data = Product::createProduct($param);
 
         return redirect()->route('admin.product.index');;
     }
 
-    public function getEdit()
+    public function getEdit($id)
     {
-        return view('admin.product.edit');
+        $data = $this->product->getDetail($id);
+        return view('admin.product.edit')->with('data', $data);
     }
 
 }
