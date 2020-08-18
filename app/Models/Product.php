@@ -41,7 +41,7 @@ class Product extends Model
     }
 
     public static function makeImage($data) {
-        $pathProduct = "C:/Users/namnt/Desktop/dogo/public/img/product";
+        $pathProduct = "C:/xampp/htdocs/dogo/public/img/product";
         if(!is_dir($pathProduct)) {
             mkdir($pathProduct);
         }
