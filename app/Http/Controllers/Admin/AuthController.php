@@ -22,7 +22,7 @@ class AuthController extends Controller
             if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
                 return redirect()->route('admin.home');
             }
-            return redirect()->route('web.auth.login')
+            return redirect()->route('auth.login')
                 ->withErrors(['Email hoặc mật khẩu không chính xác!'])
                 ->withInput();
         }
@@ -38,25 +38,11 @@ class AuthController extends Controller
 
     public function create()
     {
-        $staff = Staff::where('code', 58)->first();
-        if (empty($staff)) {
-            Staff::create([
-                'code' => 58,
-                'email' => 'admin@ominext.com',
-                'first_name' => 'Pham',
-                'last_name' => 'Tam',
-                'full_name' => 'Pham Tam',
-                'rank_id' => 1,
-                'grade_id' => '1',
-                'department_id' => 1,
-                'role' => Staff::ROLE_ADMIN,
-                'last_access_at' => date('Y-m-d H:i:s', time()),
-                'remember_token' => null,
-                'password' => Hash::make('123456'),
-                'created_id' => 1,
-                'updated_id' => 1,
-            ]);
-        }
-        return redirect()->route('web.auth.login');
+            User::create([
+                'id' => 1,
+                'name' => 'name',
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('admin@admin.com')]);
+        return redirect()->route('auth.login');
     }
 }

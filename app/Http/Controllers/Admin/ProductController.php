@@ -19,19 +19,35 @@ class ProductController extends Controller
         $this->category = $category;
     }
 
-    public function getIndex()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         $data = $this->product->getIndex();
         return view('admin.product.index')->with('datas', $data);
     }
 
-    public function getCreate()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-       $data = $this->category->getData();
-       return view('admin.product.create')->with('data', $data);
+        $data = $this->category->getData();
+        return view('admin.product.create')->with('data', $data);
     }
 
-    public function postCreate(ProductRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(ProductRequest $request)
     {
         $param = $request->only('name', 'image', 'category', 'price', 'gender', 'presence', 'status', 'content');
         $param['category'] = (int) $param['category'];
@@ -40,10 +56,55 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index');;
     }
 
-    public function getEdit($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $data = $this->product->getDetail($id);
-        return view('admin.product.edit')->with('data', $data);
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data = $this->product->getDetail($id);
+        $catetory = $this->category->getData();
+
+        return view('admin.product.edit')->with(['data' => $data, 'category' => $catetory]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ProductRequest $request)
+    {
+        $param = $request->only('id', 'name', 'image', 'category', 'price', 'gender', 'presence', 'status', 'content');
+        $param['category'] = (int) $param['category'];
+        $data = Product::UpdateProduct($param);
+        return redirect()->route('admin.product.index');;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Product::destroy($id);
+        return redirect()->route('admin.product.index');
+    }
 }

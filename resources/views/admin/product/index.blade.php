@@ -59,7 +59,12 @@
                                                             {{ \App\Models\Product::$status[$data->status] }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('admin.product.edit', $data->id) }}">Edit</a> / <a href="">Delete</a>
+                                                            <a href="{{ route('admin.product.edit', [$data->id]) }}">Edit</a>
+                                                            /
+                                                            <form action="{{ route('admin.product.delete', [$data->id]) }}" method="POST">
+                                                                @csrf
+                                                                <input type="submit" value="DELETE">
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

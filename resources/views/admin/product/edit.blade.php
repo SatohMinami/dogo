@@ -28,12 +28,13 @@
                         @endforeach
                         <!-- /.card-header -->
                             <!-- form start -->
-                            <form method="POST" action="{{ route('admin.product.create') }}" class="form-horizontal"  enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.product.update') }}" class="form-horizontal"  enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label for="inputPassword3" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
                                         <div class="col-sm-10">
+                                            <input type="hidden" name="id" value="{{ $data->id }}">
                                             <input type="text" name="name" value="{{ !empty(old('name')) ? old('name') : $data->name }}" class="form-control @error('name') border border-danger @enderror" placeholder="Tên Sản Phẩm">
                                             @error('name')
                                             <div class="text-danger mt-2 mb-0">{{ $message }}</div>
@@ -49,22 +50,23 @@
                                             @enderror
                                         </div>
                                     </div>
-{{--                                    <div class="form-group row">--}}
-{{--                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Thể Loại</label>--}}
-{{--                                        <div class="col-sm-10">--}}
-{{--                                            <select class="form-control" name="category">--}}
-{{--                                                @foreach($data as $item)--}}
-{{--                                                    <optgroup label="{{ $item['alias'] }}">--}}
-{{--                                                        @if(isset($item['children']))--}}
-{{--                                                            @foreach($item['children'] as $v)--}}
-{{--                                                                <option value="{{ $v['id'] }}">{{ $v['alias'] }}</option>--}}
-{{--                                                            @endforeach--}}
-{{--                                                        @endif--}}
-{{--                                                    </optgroup>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Thể Loại</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="category">
+                                                @foreach($category as $item)
+                                                    <optgroup label="{{ $item['alias'] }}">
+                                                        @if(isset($item['children']))
+                                                            @foreach($item['children'] as $v)
+                                                                    <option value="{{ $v['id'] }}" {{ $v['id'] == $data->category ? 'selected' : '' }}>{{ $v['alias'] }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </optgroup>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <label for="inputPassword3" class="col-sm-2 col-form-label">Giá</label>

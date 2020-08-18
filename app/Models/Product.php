@@ -12,7 +12,7 @@ class Product extends Model
 {
     use ModelTrait;
     public $table = 'sc_shop_product';
-    protected $fillable = ['name', 'image', 'category', 'status', 'price', 'content'];
+    protected $fillable = ['id', 'name', 'image', 'category', 'status', 'price', 'content'];
     public $timestamps = false;
     const ON = 0;
     const OFF = 1;
@@ -41,7 +41,7 @@ class Product extends Model
     }
 
     public static function makeImage($data) {
-        $pathProduct = "C:/xampp7.2/htdocs/bloggg/public/img/product";
+        $pathProduct = "C:/Users/namnt/Desktop/dogo/public/img/product";
         if(!is_dir($pathProduct)) {
             mkdir($pathProduct);
         }
@@ -59,5 +59,20 @@ class Product extends Model
     public static function getDetail($id) {
         $data = Product::find($id);
         return $data;
+    }
+
+    public static function UpdateProduct($data)
+    {
+        if(!empty($data['image'])) {
+            $data = self::makeImage($data);
+        }
+        $model = new Product();
+        $model = $model->find($data['id']);
+        $model->fill($data);
+        if ($model->save()) {
+            return $model;
+        }
+
+        return false;
     }
 }

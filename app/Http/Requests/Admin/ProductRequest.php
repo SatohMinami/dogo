@@ -10,6 +10,7 @@ class ProductRequest extends BaseRequest
     protected $action;
     const PRODUCT_CREATE = 'admin.product.create';
     const PRODUCT_UPDATE = 'admin.product.update';
+    const PRODUCT_DELETE = 'admin.product.delete';
 
     public function __construct(Request $request)
     {
@@ -34,13 +35,18 @@ class ProductRequest extends BaseRequest
                 $rules['content']        = ['required'];
                 break;
             case self::PRODUCT_UPDATE :
-                $rules['name']           = ['required', 'exists:sc_shop_product,id,status,1'];
-                $rules['image']          = ['required', 'mimes:jpg,jpeg,png'];
+                $rules['name']           = ['required'];
+                if ($this->has("image")) {
+                    $rules['image']          = ['required', 'mimes:jpg,jpeg,png'];
+                }
                 $rules['category']       = ['required', 'numeric'];
                 $rules['price']          = ['required', 'numeric'];
                 $rules['status']         = ['required', 'numeric'];
                 $rules['content']        = ['required'];
                 break;
+//            case self::PRODUCT_DELETE:
+//                $rules['id']             = ['required', 'numeric'];
+//                break;
             default :
                 break;
         }

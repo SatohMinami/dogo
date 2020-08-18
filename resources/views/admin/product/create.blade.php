@@ -23,9 +23,6 @@
                             <div class="card-header">
                                 <h3 class="card-title">Thêm Sản Phẩm</h3>
                             </div>
-                            @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                        @endforeach
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form method="POST" action="{{ route('admin.product.create') }}" class="form-horizontal"  enctype="multipart/form-data">
