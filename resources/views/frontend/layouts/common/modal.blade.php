@@ -152,7 +152,7 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modal-product" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -167,28 +167,20 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6 ml-auto mb-2">
-                            <img src="../cozastore/images/Logo/Ảnh to.png" class="card-img-top" alt="...">
+                            <img src="" class="card-img-top" id="img-product" alt="...">
                         </div>
                         <div class="col-md-6 ml-auto mb-2">
-                            <h5 class="font-weight-bold">Salon Chạm Nghê - Gỗ Đỏ - Muồng</h5>
+                            <h5 class="font-weight-bold" id="name-product"></h5>
                             <button type="button" class="btn btn-outline-warning mt-2 mb-3">Còn hàng</button>
-                            <div>
-                                <p>- Thương hiệu: Gỗ Hà Nam </p>
-                                <p>- Chi tiết sản phẩm: </p>
-                                <p>Bộ Salon Chạm Nghê - Gỗ Đỏ - Muồng - Tay 10, 6 Món.
-                                    Sản phẩm mang tông màu rất đẹp, trưng bày phòng
-                                    khách rất sang trọng và đẳng cấp.
-                                    Sản phẩm còn duy nhất 1 bộ.
-                                </p>
-                            </div>
+                            <div id="content-product"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Chọn sản phẩm</button>
-            </div>
+{{--            <div class="modal-footer">--}}
+{{--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>--}}
+{{--                <button type="button" class="btn btn-primary">Chọn sản phẩm</button>--}}
+{{--            </div>--}}
         </div>
     </div>
 </div>

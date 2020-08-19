@@ -44,6 +44,7 @@ $(function () {
   }, function (start, end) {
     window.alert('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
   })
+    git config --global user.name "nguyentrongnam2307@gmail.com"
 
   /* jQueryKnob */
   // $('.knob').knob()
