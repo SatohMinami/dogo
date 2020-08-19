@@ -78,13 +78,13 @@
                                         <div class="col-sm-10 mt-2">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="status" id="optionsRadios1" value="0" checked="">
+                                                    <input type="radio" name="status" id="optionsRadios1" value="1" checked="">
                                                     ON
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="status" id="optionsRadios2" value="1">
+                                                    <input type="radio" name="status" id="optionsRadios2" value="0">
                                                     OFF
                                                 </label>
                                             </div>

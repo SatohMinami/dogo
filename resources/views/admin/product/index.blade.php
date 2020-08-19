@@ -103,6 +103,7 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
 @push('scripts')
     <script>
@@ -110,8 +111,13 @@
             $("#example1").DataTable({
                 "responsive": true,
                 "autoWidth": false,
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ sản phẩm",
+                    "zeroRecords": "Chả tìm thấy gì cả",
+                    "info": "Đây là page _PAGE_ trong tất cả _PAGES_ page",
+                    "infoEmpty": "Làm gì có gì",
+                    "infoFiltered": "(filtered from _MAX_ total records)"}
             });
-
             $("#btn-delete-product").click(function (){
                 $("#form-delete-product").submit();
             }) ;

@@ -14,8 +14,6 @@ class Product extends Model
     public $table = 'sc_shop_product';
     protected $fillable = ['id', 'name', 'image', 'category', 'status', 'price', 'content'];
     public $timestamps = false;
-    const ON = 0;
-    const OFF = 1;
 
     public static $status = [
         '0' => "ON",
@@ -24,7 +22,7 @@ class Product extends Model
 
     public static function getIndex()
     {
-        $data = self::where('status', Product::ON)->get();
+        $data = self::where('status', true)->get();
         return $data;
     }
 
@@ -34,14 +32,14 @@ class Product extends Model
         $model = new Product();
         $model->fill($data);
         if ($model->save()) {
-            return $model;
+            return true;
         }
 
         return false;
     }
 
     public static function makeImage($data) {
-        $pathProduct = "C:/xampp/htdocs/dogo/public/img/product";
+        $pathProduct = "C:/Users/namnt/Desktop/dogo/public/img/product";
         if(!is_dir($pathProduct)) {
             mkdir($pathProduct);
         }
@@ -70,9 +68,31 @@ class Product extends Model
         $model = $model->find($data['id']);
         $model->fill($data);
         if ($model->save()) {
-            return $model;
+            return true;
         }
 
         return false;
+    }
+
+    public function getProduct($categories)
+    {
+        $products = Product::join('sc_shop_category', 'sc_shop_category.id', '=', 'sc_shop_product.category')
+            ->select('sc_shop_product.id', 'sc_shop_product.image', 'sc_shop_product.name', 'sc_shop_product.price', 'sc_shop_product.category',
+                'sc_shop_product.content', 'sc_shop_category.id', 'sc_shop_category.alias')
+            ->where('sc_shop_product.status', true)
+            ->get()
+            ->toArray();
+
+        $data = [];
+        foreach ($categories as $category) {
+            foreach ($products as $product) {
+                if (in_array($product['category'], $category['array'])) {
+                    $data[$category['id']]['name'] = $category['name'];
+                    $data[$category['id']]['array'][] = $product;
+                }
+            }
+        }
+
+        return $data;
     }
 }

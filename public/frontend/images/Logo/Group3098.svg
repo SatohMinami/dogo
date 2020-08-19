@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="395.5" height="45" viewBox="0 0 395.5 45">
+  <g id="Group_3098" data-name="Group 3098" transform="translate(-193.5 -96)">
+    <text id="ĐỒ_GỖ_CƯƠNG_HẰNG" data-name="ĐỒ GỖ CƯƠNG HẰNG" transform="translate(239 132)" fill="#fff" font-size="36" font-family="Roboto-Black, Roboto" font-weight="800"><tspan x="0" y="0">ĐỒ GỖ CƯƠNG HẰNG</tspan></text>
+    <g id="closet" transform="translate(153.202 102)">
+      <path id="Path_922" data-name="Path 922" d="M67.444,0H42.6a.8.8,0,0,0-.8.8V32.277a.8.8,0,0,0,.8.8H67.444a.8.8,0,0,0,.8-.8V.8A.8.8,0,0,0,67.444,0ZM43.4,1.6H54.221V31.477H43.4ZM66.644,31.477H55.821V1.6H66.644Z" transform="translate(0)" fill="#fff" stroke="#fff" stroke-width="3"/>
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="0.947" cy="0.947" r="0.947" transform="translate(48.148 17.053)" fill="#fff" stroke="#fff" stroke-width="3"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="0.947" cy="0.947" r="0.947" transform="translate(60 17.053)" fill="#fff" stroke="#fff" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

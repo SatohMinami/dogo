@@ -52,6 +52,9 @@ class ProductController extends Controller
         $param = $request->only('name', 'image', 'category', 'price', 'gender', 'presence', 'status', 'content');
         $param['category'] = (int) $param['category'];
         $data = Product::createProduct($param);
+        if (!$data) {
+
+        }
 
         return redirect()->route('admin.product.index');;
     }
@@ -93,6 +96,10 @@ class ProductController extends Controller
         $param = $request->only('id', 'name', 'image', 'category', 'price', 'gender', 'presence', 'status', 'content');
         $param['category'] = (int) $param['category'];
         $data = Product::UpdateProduct($param);
+        if (!$data) {
+
+        }
+
         return redirect()->route('admin.product.index');;
     }
 
@@ -104,7 +111,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::destroy($id);
+        $data = Product::destroy($id);
+        if ($data) {
+
+        }
+
         return redirect()->route('admin.product.index');
     }
 }

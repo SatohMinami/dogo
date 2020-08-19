@@ -1,23 +1,37 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+    <section class="bg0 p-t-23 p-b-20">
+        <div class="container">
+            @foreach ($data as $items)
+                <div class="info-product">
+                    <div class="p-b-10 d-ltext">
+                        <h3 class="ltext-103 cl5 ">
+                            {{ $items['name'] }}
+                        </h3>
+                        <p class="ptext mb-0">
+                            <a href="#">Xem tất cả >>></a>
+                        </p>
+                    </div>
+                    <div class="inf-text">
+                        <div class="row">
+                            @foreach($items['array'] as $item )
+                                <div class="col-lg-3">
+                                    <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <img src="{{ $item['image'] }}" class="card-img-top" alt="...">
+                                        <div class="card-body text-center">
+                                            <h6 class="h-text">MÃ HÀNG: 001</h6>
+                                            <p class="p-text">
+                                                {{ $item['name'] }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endif
-
-                    You are logged in!
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-    </div>
-</div>
+    </section>
 @endsection
