@@ -20,3 +20,4 @@ Route::group(['prefix' => 'product', 'namespace' => 'Admin', 'middleware' => ['a
 
 
 Route::get('/', 'FrontEnd\HomeController@index')->name('front.home');
+Route::get('/category/{id}', 'FrontEnd\HomeController@getCategory')->name('front.category');

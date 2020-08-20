@@ -1,12 +1,9 @@
 <div class="sec-banner navbar-custom bg0 p-t-80">
     <div class="container navbar-child">
         <ul class="menu-child">
-            <li><a href="default.asp" class="font-weight-bold active">PHÒNG KHÁCH</a></li>
-            <li><a href="news.asp" class="">PHÒNG BẾP</a></li>
-            <li><a href="news.asp" class="">PHÒNG NGỦ</a></li>
-            <li><a href="news.asp" class="">PHÒNG TẮM</a></li>
-            <li><a href="news.asp" class="">PHÒNG THỜ</a></li>
-            <li><a href="news.asp" class="">KHÁC</a></li>
+            @foreach(\App\Models\Category::getParentCategory() as $item)
+                <li><a href="{{ route('front.category', $item['id']) }}" class="font-weight-bold active">{{ $item['alias'] }}</a></li>
+            @endforeach
         </ul>
     </div>
 </div>

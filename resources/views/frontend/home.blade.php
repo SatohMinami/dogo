@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    @include('frontend.layouts.common.aside')
+    @include('frontend.layouts.common.banner')
     <section class="bg0 p-t-23 p-b-20">
         <div class="container">
             @foreach ($data as $items)
@@ -26,7 +28,6 @@
                                             </p>
                                         </div>
                                     </div>
-
                                 </div>
                             @endforeach
                         </div>

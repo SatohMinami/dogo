@@ -22,7 +22,7 @@ class Category extends Model
        return $data;
     }
 
-    static function buildTree($data, $parentId = 0) {
+    public static function buildTree($data, $parentId = 0) {
         $childs = array();
         foreach ($data as $value) {
             if ($value['parent'] == $parentId) {
@@ -39,20 +39,13 @@ class Category extends Model
 
     public static function getNameCategory() {
         $data = Category::select('id', 'alias')->get()->toArray();
-
         return $data;
     }
 
+    public static function getCategories() {
 
-    public static function getDataMain() {
-        $data['parent'] = Category::select('id', 'alias', 'parent')
-            ->where('parent', '=',0)
-            ->get()
-            ->toArray();
-        $data['child'] =  Category::select('id', 'alias', 'parent')
-            ->where('parent', '!=',0)
-            ->get()
-            ->toArray();
+        $data['parent'] = Category::getParentCategory();
+        $data['child'] =  Category::getChildCategory();
 
         $datas = [];
         foreach ($data['parent'] as $v) {
@@ -66,6 +59,31 @@ class Category extends Model
         }
 
         return $datas;
+    }
+
+    public static function getChildCategory() {
+        $data =  Category::select('id', 'alias', 'parent')
+            ->where('parent', '!=',0)
+            ->get()
+            ->toArray();
+        return $data;
+    }
+
+    public static function getParentCategory() {
+        $data = Category::select('id', 'alias', 'parent')
+            ->where('parent', 0)
+            ->get()
+            ->toArray();
+
+        return $data;
+    }
+
+    public static function getChildByParentCategory($id) {
+        $data = Category::select('id')
+            ->where('id')
+            ->get()
+            ->toArray();
+        return $data;
     }
 
 

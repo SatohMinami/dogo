@@ -28,8 +28,6 @@
 <body class="animsition">
     @include('frontend.layouts.common.header')
     @include('frontend.layouts.common.navbar')
-    @include('frontend.layouts.common.aside')
-    @include('frontend.layouts.common.banner')
     @yield('content')
     @include('frontend.layouts.common.footer')
     @include('frontend.layouts.common.modal')

@@ -95,4 +95,8 @@ class Product extends Model
 
         return $data;
     }
+
+//    public function getProductByCategory($id) {
+//        $data = Product::
+//    }
 }
