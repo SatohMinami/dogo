@@ -79,10 +79,15 @@ class Category extends Model
     }
 
     public static function getChildByParentCategory($id) {
-        $data = Category::select('id')
-            ->where('id')
-            ->get()
-            ->toArray();
+        $categories = Category::select('id')
+            ->where('parent', $id)
+            ->get();
+
+        $data = [];
+        foreach ( $categories as $value ) {
+            $data[] = $value->id;
+        }
+
         return $data;
     }
 

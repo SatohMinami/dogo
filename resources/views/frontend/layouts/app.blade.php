@@ -68,18 +68,18 @@
 </script>
 <!--===============================================================================================-->
 <script src="{{ asset('frontend/vendor/MagnificPopup/jquery.magnific-popup.min.js') }}"></script>
-<script>
-    $('.gallery-lb').each(function() { // the containers for all your galleries
-        $(this).magnificPopup({
-            delegate: 'a', // the selector for gallery item
-            type: 'image',
-            gallery: {
-                enabled:true
-            },
-            mainClass: 'mfp-fade'
-        });
-    });
-</script>
+{{--<script>--}}
+{{--    $('.gallery-lb').each(function() { // the containers for all your galleries--}}
+{{--        $(this).magnificPopup({--}}
+{{--            delegate: 'a', // the selector for gallery item--}}
+{{--            type: 'image',--}}
+{{--            gallery: {--}}
+{{--                enabled:true--}}
+{{--            },--}}
+{{--            mainClass: 'mfp-fade'--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 <!--===============================================================================================-->
 <script src="{{ asset('frontend/vendor/isotope/isotope.pkgd.min.js') }}"></script>
 <!--===============================================================================================-->

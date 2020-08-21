@@ -26,8 +26,8 @@ class HomeController extends Controller
 
     public function getCategory($id) {
         $childCategory = $this->category->getChildByParentCategory($id);
-//        dd($childCategory);
-//        $data = $this->product->getProductByCategory($id);
-        return view('frontend.category');
+        $data = $this->product->getProductByCategory($childCategory);
+
+        return view('frontend.category')->with('data', $data);
     }
 }

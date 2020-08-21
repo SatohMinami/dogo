@@ -96,7 +96,11 @@ class Product extends Model
         return $data;
     }
 
-//    public function getProductByCategory($id) {
-//        $data = Product::
-//    }
+    public function getProductByCategory($category) {
+        $data = Product::select('id', 'image', 'name', 'price', 'content')
+            ->whereIn('category', $category)
+            ->get();
+
+        return $data;
+    }
 }
